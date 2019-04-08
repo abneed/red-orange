@@ -1,10 +1,11 @@
-<header class="navbar navbar-expand-lg navbar-light bg-light">
+<header class="navbar navbar-expand-lg navbar-light">
   <nav class="container">
-    <%= link_to "Red Orange", root_path, id: "logo" %>
+    <%= link_to image_tag("red-orange-logo.png", class: "home_logo"), root_path, id: "logo"%>
     <ul class="navbar-nav">
-      <li class="nav-item"><%= link_to "Home",   root_path,  class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Help",   help_path,  class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Log in", '#',        class: "nav-link disabled" %></li>
+      <li class="nav-item"><%= link_to "Inicio",  root_path,  class: "button" %></li>
+      <li class="nav-item"><%= link_to "Ayuda",   help_path,  class: "button" %></li>
+      <li class="nav-item"><%= link_to "Iniciar sesión", '#', class: "button" %></li>
+      <li class="nav-item"><%= link_to "Registrarse", '#',    class: "button" %></li>
     </ul>
   </nav>
 </header> 
