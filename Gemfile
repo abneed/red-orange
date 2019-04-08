@@ -13,6 +13,7 @@ gem 'turbolinks',   '5.2.0'
 gem 'jbuilder',     '2.8.0'
 gem 'bootsnap',     '1.4.1', require: false
 gem 'bootstrap',    '4.3.1'
+gem 'devise',       '4.6.2'
 gem 'sprockets-rails',  :require => 'sprockets/railtie'
 
 group :development, :test do
