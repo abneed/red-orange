@@ -10,6 +10,18 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
+@mixin border-radius {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+@mixin box-shadow {
+  -webkit-box-shadow: 0px 3px 20px 3px rgba(1, 132, 155, 1);
+  -moz-box-shadow: 0px 3px 20px 3px rgba(1, 132, 155, 1);
+  box-shadow: 0px 3px 20px 3px rgba(1, 132, 155, 1);
+}
+
 /* universal */
 section {
   overflow: auto;
@@ -237,4 +249,42 @@ input {
   border-radius:20px;
   padding: 30px;
   box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+}
+
+form {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 23px;
+}
+
+input#pass, input#email  {
+  width: 350px;
+  height: 40px;
+  border: 2px solid rgb(2, 174, 204);
+  padding-left: 5px;
+  @include border-radius;
+  @include box-shadow;
+}
+
+input#submit {
+  width: 180px;
+  height: 50px;
+  color: white;
+  background-color: rgb(1, 132, 155);
+  border: 2px solid rgba(0, 132, 155, 1);
+  @include border-radius;
+  @include box-shadow;
+}
+
+.clic {
+  color: black;
+  font-size: 15pt;
+  text-decoration: underline;
+}
+
+.forgot {
+  font-size: 15pt;
+}
+
+.image_presentation {
+  width: 600px;
 }
