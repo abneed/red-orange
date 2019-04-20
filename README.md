@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-To make this project work, you need ruby version 2.5.1 installed in your system.
+To make this project work, you need ruby version 2.4.2 installed in your system.
 
 ## Getting started
 
