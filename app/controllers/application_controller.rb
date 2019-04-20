@@ -1,5 +1,19 @@
 class ApplicationController < ActionController::Base
-  def hello
-    render html: 'Hello girls!, welcome to our new website. :)'
+  protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def after_sign_in_path_for(resource)
+    @user = User.find(resource.id)
+  end
+  
+  def after_update_path_for(resource)
+    @user = User.find(resource.id)
+  end
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 end

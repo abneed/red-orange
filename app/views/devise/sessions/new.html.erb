@@ -1,0 +1,36 @@
+<div>
+  <div class="header-left">
+    <h2>Iniciar sesión</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "header-left") do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    
+      <div class="field">
+        <%= f.label "Correo electrónico" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Contraseña" %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me, :style => "width:15px;"  %>
+          <%= f.label "Recuerdame" %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Iniciar sesión" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+    <%= link_to  "Ir a la página de inicio del visitante.", root_path %>
+    <br>
+    <br>
+    <br>
+  </div>
+  <%= content_tag :div, nil, class: "header-right" %>
+</div>

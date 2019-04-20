@@ -201,7 +201,7 @@ input {
 .navbar {
   background-color: orangered;
   padding: 0 auto;
-  width: auto; 
+  width: auto;
 }
 
 .home_logo {
@@ -225,21 +225,21 @@ input {
 }
 
 .session p{
-  text-align: right;   
+  text-align: right;
   color: white;
   padding-right: 20%;
   padding-top: 5px;
 }
 
-.session li { 
-  list-style: none; 
-  float:right; 
+.session li {
+  list-style: none;
+  float:right;
   padding-right:15px;
 }
 
 .modal {
-  padding-top: 50px; 
-  width: 600px; 
+  padding-top: 50px;
+  width: 600px;
   height: 300px;
   background-color: #1d1d1d;
   color:#fff;
@@ -251,40 +251,58 @@ input {
   box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
 }
 
-form {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 23px;
+.header-left {
+  width: 20vw;
+  display: inline-block;
+  margin-right: 50px;
 }
 
-input#pass, input#email  {
-  width: 350px;
-  height: 40px;
-  border: 2px solid rgb(2, 174, 204);
-  padding-left: 5px;
-  @include border-radius;
-  @include box-shadow;
+.header-right {
+  background-color: #c7dbfc;
+  background-size: cover;
+  background-position: center;
+  background-image: image-url("sst-gente.jpg");
+  display: inline-block;
+  width: 70%;
+  height: 400px;  
 }
 
-input#submit {
-  width: 180px;
-  height: 50px;
-  color: white;
-  background-color: rgb(1, 132, 155);
-  border: 2px solid rgba(0, 132, 155, 1);
-  @include border-radius;
-  @include box-shadow;
-}
 
-.clic {
-  color: black;
-  font-size: 15pt;
-  text-decoration: underline;
-}
 
-.forgot {
-  font-size: 15pt;
-}
+// form {
+//   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+//   font-size: 23px;
+// }
+
+// input#pass, input#email  {
+//   width: 350px;
+//   height: 40px;
+//   border: 2px solid rgb(2, 174, 204);
+//   padding-left: 5px;
+//   @include border-radius;
+//   @include box-shadow;
+// }
+
+// input#submit {
+//   width: 180px;
+//   height: 50px;
+//   color: white;
+//   background-color: rgb(1, 132, 155);
+//   border: 2px solid rgba(0, 132, 155, 1);
+//   @include border-radius;
+//   @include box-shadow;
+// }
+
+// .clic {
+//   color: black;
+//   font-size: 15pt;
+//   text-decoration: underline;
+// }
+
+// .forgot {
+//   font-size: 15pt;
+// }
 
 .image_presentation {
-  width: 600px;
+  width: 100%;
 }
