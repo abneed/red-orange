@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Habilidades</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID Interno</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Grado de dificultad</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skills.each do |skill| %>
+      <tr>
+        <td><%= skill.id %></td>
+        <td><%= skill.name %></td>
+        <td><%= skill.description %></td>
+        <td><%= skill.degree_of_difficulty %></td>
+        <td><%= link_to 'Más detalles', skill %></td>
+        <td><%= link_to 'Editar', edit_skill_path(skill) %></td>
+        <td><%= link_to 'Eliminar', skill, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva habilidad', new_skill_path %>

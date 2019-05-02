@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @skill.name %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @skill.description %>
+</p>
+
+<p>
+  <strong>Grado de dificultad:</strong>
+  <%= @skill.degree_of_difficulty %>
+</p>
+
+<%= link_to 'Editar', edit_skill_path(@skill) %> |
+<%= link_to 'Regresar', skills_path %>
