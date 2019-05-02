@@ -6,6 +6,7 @@
       <li class="nav-item"><%= link_to "Ayuda",   help_path,  class: "button" %></li>
       <% if user_signed_in? %>
         <li class="nav-item"><%= link_to "Usuarios", users_path, class: "button" %></li>
+        <li class="nav-item"><%= link_to "Artículos", items_path, class: "button" %></li>
         <li class="nav-item"><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete, class: "button" %></li>
       <% else %>
         <li class="nav-item"><%= link_to "Iniciar sesión", new_user_session_path, class: "button" %></li>

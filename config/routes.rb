@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   devise_for :users
   resources :users
+  resources :items
 end
