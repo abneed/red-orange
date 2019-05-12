@@ -63,5 +63,7 @@
     <% end %>
   </tbody>
 </table>
+<%= pie_chart @employee.skills.group(:name).sum(:degree_of_dominance) %>
+
 <%= link_to 'Editar', edit_employee_path(@employee) %> |
 <%= link_to 'Regresar', employees_path %>
