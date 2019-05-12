@@ -9,36 +9,36 @@
 Employee.create([
   {
     name: "Guillermo Abneed Rodríguez Velázquez",
-    jobTitle: "Software Developer",
+    jobTitle: "Desarrollador de software",
     subsidiary: "Red Orange - Nuevo Laredo",
-    department: "Engineering",
+    department: "Ingeniería",
     currency: "MXN",
     phone: "(867) 225-20-31",
     dateOfHire: Time.now
   },
   {
     name: "Claudia Aidee Verdugo",
-    jobTitle: "Software Developer",
+    jobTitle: "Desarrollador de software",
     subsidiary: "Red Orange - Nuevo Laredo",
-    department: "Engineering",
+    department: "Ingeniería",
     currency: "MXN",
     phone: "(867) 905-04-62",
     dateOfHire: 3.months.ago
   },
   {
     name: "Vianey Patiño",
-    jobTitle: "Software Developer",
+    jobTitle: "Desarrollador de software",
     subsidiary: "Red Orange - Nuevo Laredo",
-    department: "Engineering",
+    department: "Ingeniería",
     currency: "MXN",
     phone: "(867) 243-38-36",
     dateOfHire: 3.months.ago
   },
   {
     name: "Paulina Alejandra Ponce",
-    jobTitle: "Production Supervisor",
+    jobTitle: "Supervisor de linea",
     subsidiary: "Red Orange - Nuevo Laredo",
-    department: "Manufacturing",
+    department: "Manufactura",
     currency: "MXN",
     phone: "(867) 243-45-90",
     dateOfHire: 6.months.ago
