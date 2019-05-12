@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_064455) do
+ActiveRecord::Schema.define(version: 2019_05_11_120904) do
+
+  create_table "dominates", force: :cascade do |t|
+    t.integer "employee_id"
+    t.integer "skill_id"
+    t.integer "degree_of_dominance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_dominates_on_employee_id"
+    t.index ["skill_id"], name: "index_dominates_on_skill_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "jobTitle"
+    t.string "subsidiary"
+    t.string "department"
+    t.string "currency"
+    t.string "phone"
+    t.date "dateOfHire"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "skills", force: :cascade do |t|
     t.string "name"

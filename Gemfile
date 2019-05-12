@@ -14,6 +14,9 @@ gem 'jbuilder',     '2.8.0'
 gem 'bootsnap',     '1.4.1', require: false
 gem 'bootstrap',    '4.3.1'
 gem 'devise',       '4.6.2'
+gem 'faker',        '1.7.3'
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
 gem 'sprockets-rails',  :require => 'sprockets/railtie'
 
 group :development, :test do

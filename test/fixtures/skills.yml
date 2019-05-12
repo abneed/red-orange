@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
-  degree_of_difficulty: 1
+  name: Trabajar bajo presión
+  description: Capacidad de trabajar bajo presión
+  degree_of_difficulty: 3
 
 two:
-  name: MyString
-  description: MyText
+  name: Iniciativa
+  description: Capacidad de tomar decisiónes, y hacer cosas antes de que se lo pidan.
   degree_of_difficulty: 1

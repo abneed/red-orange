@@ -213,15 +213,14 @@ input {
   padding: 10px;
   font-size: 15px;
   color: #ffffff;
-  background-color: #1883ba;
-  background-color: #621295;
-  border-radius: 20px;
+  background-color: orangered;
+  border-radius: 3px;
 }
 
 .button:hover {
   color: white;
-  background-color: #67ADE1;
-  background-color: #951ce0;
+  text-decoration: none;
+  background-color: rgba(149, 28, 224,0.5);
 }
 
 .session p{
