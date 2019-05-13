@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: "Lamina de aluminio"
+  description: "Lamina de aluminio de 10mm de grosor, con dimensiones de 1 metro de ancho, y 1 metro de largo."
+  quantity: 200
+
+two:
+  name: "Tornillo de 3mm de grosor"
+  description: "Tornillo de 3mm de grosor"
+  quantity: 500
