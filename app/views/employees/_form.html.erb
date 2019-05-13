@@ -12,40 +12,76 @@
   <% end %>
 
   <div class="field">
-    <%= form.label "Nombre completo" %>
+    <strong>
+    <%= form.label "Nombre completo" %><br />
+    </strong>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label "Título profesional" %>
+    <strong>
+    <%= form.label "Título profesional" %><br />
+    </strong>
     <%= form.text_field :jobTitle %>
   </div>
 
   <div class="field">
-    <%= form.label "Subsidiaria" %>
+    <strong>
+    <%= form.label "Subsidiaria" %><br />
+    </strong>
     <%= form.text_field :subsidiary %>
   </div>
 
   <div class="field">
-    <%= form.label "Departamento" %>
+    <strong>
+    <%= form.label "Departamento" %><br />
+    </strong>
     <%= form.text_field :department %>
   </div>
 
   <div class="field">
-    <%= form.label "Modena" %>
+    <strong>
+    <%= form.label "Moneda" %><br />
+    </strong>
     <%= form.text_field :currency %>
   </div>
 
   <div class="field">
-    <%= form.label "Telefono" %>
+    <strong>
+    <%= form.label "Telefono" %><br />
+    </strong>
     <%= form.text_field :phone %>
   </div>
+  
+  <h2>Habilidades</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID Interno</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Grado de dificultad</th>
+        <th scope="col">Grado de dominancia</th>
+        
+        <th colspan="3"></th>
+        
+      </tr>
+    </thead>
 
-  <div class="field">
-    <%= form.label "Fecha de contratación" %>
-    <%= form.date_select :dateOfHire %>
-  </div>
-
+    <tbody>
+      <% employee.dominates.each do |dominate| %>
+        <tr>
+          <td><%= dominate.skill.id %></td>
+          <td><%= dominate.skill.name %></td>
+          <td><%= dominate.skill.description %></td>
+          <td><%= dominate.skill.degree_of_difficulty %></td>
+          <td><%= dominate.degree_of_dominance %></td>
+          <td><%= link_to 'Editar', edit_dominate_path(dominate) %></td>
+          <td><%= link_to 'Eliminar', dominate, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   <div class="actions">
     <%= form.submit "Guardar" %>
   </div>

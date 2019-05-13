@@ -1,0 +1,24 @@
+<%= form_with(model: dominate, local: true) do |form| %>
+  <% if dominate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dominate.errors.count, "error") %> prohibited this dominate from being saved:</h2>
+
+      <ul>
+      <% dominate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong>
+    <%= form.label "Grado de dominancia" %><br />
+    </strong>
+    <%= form.number_field :degree_of_dominance %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Actualizar dominancia" %>
+  </div>
+<% end %>

@@ -159,7 +159,7 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  width: 45%;
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -266,41 +266,9 @@ input {
   height: 400px;  
 }
 
-
-
-// form {
-//   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-//   font-size: 23px;
-// }
-
-// input#pass, input#email  {
-//   width: 350px;
-//   height: 40px;
-//   border: 2px solid rgb(2, 174, 204);
-//   padding-left: 5px;
-//   @include border-radius;
-//   @include box-shadow;
-// }
-
-// input#submit {
-//   width: 180px;
-//   height: 50px;
-//   color: white;
-//   background-color: rgb(1, 132, 155);
-//   border: 2px solid rgba(0, 132, 155, 1);
-//   @include border-radius;
-//   @include box-shadow;
-// }
-
-// .clic {
-//   color: black;
-//   font-size: 15pt;
-//   text-decoration: underline;
-// }
-
-// .forgot {
-//   font-size: 15pt;
-// }
+input#user_password, input#user_email {
+  width: 100%;
+}
 
 .image_presentation {
   width: 100%;

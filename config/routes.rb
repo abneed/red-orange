@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :users
   resources :skills
   resources :employees
-  resources :dominates, only: [:update, :destroy]
+  resources :dominates, only: [:edit, :update, :destroy]
   resources :items
 end
