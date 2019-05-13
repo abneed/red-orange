@@ -31,3 +31,4 @@
 <br>
 
 <%= link_to 'Nuevo artículo', new_item_path %>
+<%= bar_chart Item.all.group(:name).sum(:quantity)%>

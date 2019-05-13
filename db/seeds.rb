@@ -85,7 +85,25 @@ Skill.create([
     name: "Empaque",
     description: "Efectividad y rapidez en empaquetar.",
     degree_of_difficulty: 2
+  }
+])
+
+Item.create([
+  {
+    name: "Tornillo",
+    description: "Tornillo de 3mm de grosor.",
+    quantity: 30,
   },
+  {
+    name: "Tubo de aluminio",
+    description: "Tubo de aluminio de 5 cm de diametro, con una longitud de 1 metro.",
+    quantity: 20,
+  },
+  {
+    name: "Lamina de aluminio",
+    description: "Lamina de aluminio de 5mm de grosor, con dimensiones de 1 metro de largo y 1 metro de ancho.",
+    quantity: 20,
+  }
 ])
 
 employee = Employee.find_by(name: "Guillermo Abneed Rodríguez Velázquez")

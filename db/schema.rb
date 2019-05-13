@@ -34,18 +34,18 @@ ActiveRecord::Schema.define(version: 2019_05_11_120904) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "skills", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "degree_of_difficulty"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "description", default: "", null: false
     t.integer "quantity", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "degree_of_difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
