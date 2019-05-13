@@ -2,3 +2,4 @@
   <h1>Bienvenidos a Red Orange</h1>
   <h2>Esta es la página de inicio de la aplicación Red Orange.</h2>
 </div>
+<%= column_chart Skill.joins(:dominates).group(:name).average(:degree_of_dominance) %>
