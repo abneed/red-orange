@@ -2,6 +2,9 @@
 
 <h1>Inventario de artículos</h1>
 
+<%= link_to 'Nuevo artículo', new_item_path %>
+<br>
+<br>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -30,5 +33,4 @@
 
 <br>
 
-<%= link_to 'Nuevo artículo', new_item_path %>
 <%= bar_chart Item.all.group(:name).sum(:quantity)%>
