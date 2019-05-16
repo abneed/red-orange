@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_05_11_120904) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "dominates", force: :cascade do |t|
-    t.integer "employee_id"
-    t.integer "skill_id"
+    t.bigint "employee_id"
+    t.bigint "skill_id"
     t.integer "degree_of_dominance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,4 +66,6 @@ ActiveRecord::Schema.define(version: 2019_05_11_120904) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "dominates", "employees"
+  add_foreign_key "dominates", "skills"
 end
