@@ -6,7 +6,7 @@
 
 <p>
   <strong>Título profesional:</strong>
-  <%= @employee.jobTitle %>
+  <%= @employee.job_title %>
 </p>
 
 <p>
@@ -31,7 +31,7 @@
 
 <p>
   <strong>Fecha de contratación:</strong>
-  <%= @employee.dateOfHire %>
+  <%= @employee.date_of_hire %>
 </p>
 <h2>Habilidades</h2>
 <table class="table table-hover">
@@ -63,7 +63,7 @@
     <% end %>
   </tbody>
 </table>
-<%= pie_chart @employee.skills.group(:name).sum(:degree_of_dominance), donut: true %>
+<%#= pie_chart @employee.skills.group(:name).sum(:degree_of_dominance), donut: true %>
 
 <%= link_to 'Editar', edit_employee_path(@employee) %> |
 <%= link_to 'Regresar', employees_path %>
