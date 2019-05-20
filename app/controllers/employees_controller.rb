@@ -24,15 +24,14 @@ class EmployeesController < ApplicationController
   # POST /employees
   # POST /employees.json
   def create
-    @employee = Employee.new(employee_params)
-
     respond_to do |format|
-      if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render :show, status: :created, location: @employee }
+      Employee.create(employee_params.values)
+      if employee = Employee.find_last_created()
+        format.html { redirect_to employees_path + "/#{employee.id}", notice: 'El empleado fue creado con éxito.' }
+        format.json { render :show, status: :created, location: employee }
       else
         format.html { render :new }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
+        format.json { render json: employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +40,13 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1.json
   def update
     respond_to do |format|
-      if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @employee }
+      Employee.update(update_employee_params.values)
+      if employee = Employee.find_last_updated()
+        format.html { redirect_to employees_path + "/#{employee.id}", notice: 'El empleado fue actualizado con éxito.' }
+        format.json { render :show, status: :ok, location: employee }
       else
         format.html { render :edit }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
+        format.json { render json: employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,9 +54,9 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    @employee.destroy
+    Employee.destroy(@employee.id)
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
+      format.html { redirect_to employees_url, notice: 'El empleado fue eliminado con éxito.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +68,12 @@ class EmployeesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def update_employee_params
+      params.permit(:id, :name, :job_title, :subsidiary, :department, :currency, :phone, :date_of_hire)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:name, :jobTitle, :subsidiary, :department, :currency, :phone, :dateOfHire)
+      params.require(:employee).permit(:name, :job_title, :subsidiary, :department, :currency, :phone, :date_of_hire)
     end
 end

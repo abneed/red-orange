@@ -24,15 +24,14 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
-
     respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'El artículo fue creado con éxito.' }
-        format.json { render :show, status: :created, location: @item }
+      Item.create(item_params.values)
+      if item = Item.find_last_created()
+        format.html { redirect_to items_path + "/#{item.id}", notice: 'El artículo fue creado con éxito.' }
+        format.json { render :show, status: :created, location: items_path + "/#{item.id}" }
       else
         format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.json { render json: item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +40,13 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'El artículo fue actualizado con éxito.' }
-        format.json { render :show, status: :ok, location: @item }
+      Item.update(update_item_params.values)
+      if item = Item.find_last_updated()
+        format.html { redirect_to items_path + "/#{item.id}", notice: 'El artículo fue actualizado con éxito.' }
+        format.json { render :show, status: :ok, location: items_path + "/#{item.id}" }
       else
         format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.json { render json: item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item.destroy
+    Item.destroy(@item.id)
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'El artículo fue eliminado con éxito.' }
       format.json { head :no_content }
@@ -65,6 +65,11 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def update_item_params
+      params.permit(:id, :name, :description, :quantity)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

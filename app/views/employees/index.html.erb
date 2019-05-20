@@ -20,19 +20,22 @@
   </thead>
 
   <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td><%= employee.name %></td>
-        <td><%= employee.job_title %></td>
-        <td><%= employee.subsidiary %></td>
-        <td><%= employee.department %></td>
-        <td><%= employee.currency %></td>
-        <td><%= employee.phone %></td>
-        <td><%= employee.date_of_hire %></td>
-        <td><%= link_to 'Más detalles', employee %></td>
-        <td><%= link_to 'Editar', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Eliminar', employee, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-      </tr>
+    <% if @employees %>
+      <% @employees = @employees.is_a?(Array) ? @employees : [@employees] %>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.job_title %></td>
+          <td><%= employee.subsidiary %></td>
+          <td><%= employee.department %></td>
+          <td><%= employee.currency %></td>
+          <td><%= employee.phone %></td>
+          <td><%= employee.date_of_hire %></td>
+          <td><%= link_to 'Más detalles', employees_path + "/#{employee.id}" %></td>
+          <td><%= link_to 'Editar', edit_employee_path(employee) %></td>
+          <td><%= link_to 'Eliminar', employees_path + "/#{employee.id}", method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

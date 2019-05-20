@@ -24,15 +24,14 @@ class SkillsController < ApplicationController
   # POST /skills
   # POST /skills.json
   def create
-    @skill = Skill.new(skill_params)
-
     respond_to do |format|
-      if @skill.save
-        format.html { redirect_to @skill, notice: 'La habilidad fue creada exitosamente.' }
-        format.json { render :show, status: :created, location: @skill }
+      Skill.create(skill_params.values)
+      if skill = Skill.find_last_created()
+        format.html { redirect_to skill, notice: 'La habilidad fue creada exitosamente.' }
+        format.json { render :show, status: :created, location: skill }
       else
         format.html { render :new }
-        format.json { render json: @skill.errors, status: :unprocessable_entity }
+        format.json { render json: skill.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +40,13 @@ class SkillsController < ApplicationController
   # PATCH/PUT /skills/1.json
   def update
     respond_to do |format|
-      if @skill.update(skill_params)
-        format.html { redirect_to @skill, notice: 'La habilidad fue actualizada exitosamente.' }
-        format.json { render :show, status: :ok, location: @skill }
+      Skill.update(update_skill_params.values)
+      if skill = Skill.find_last_updated()
+        format.html { redirect_to skill, notice: 'La habilidad fue actualizada exitosamente.' }
+        format.json { render :show, status: :ok, location: skill }
       else
         format.html { render :edit }
-        format.json { render json: @skill.errors, status: :unprocessable_entity }
+        format.json { render json: skill.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +54,7 @@ class SkillsController < ApplicationController
   # DELETE /skills/1
   # DELETE /skills/1.json
   def destroy
-    @skill.destroy
+    Skill.destroy(@skill.id)
     respond_to do |format|
       format.html { redirect_to skills_url, notice: 'La habilidad fue destruida exitosamente.' }
       format.json { head :no_content }
@@ -65,6 +65,11 @@ class SkillsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_skill
       @skill = Skill.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def update_skill_params
+      params.permit(:id, :name, :description, :degree_of_difficulty)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

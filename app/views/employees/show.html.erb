@@ -34,6 +34,13 @@
   <%= @employee.date_of_hire %>
 </p>
 <h2>Habilidades</h2>
+<% if Skill.all %>
+  <%= link_to 'Agregar nueva habilidad', new_dominate_path + "?employee_id=#{@employee.id}" %>
+<% else %>
+  <span>Habilidades no disponibles para asignar</span>
+<% end %>
+<br />
+<br />
 <table class="table table-hover">
   <thead>
     <tr>
@@ -49,17 +56,23 @@
   </thead>
 
   <tbody>
-    <% @employee.dominates.each do |dominate| %>
-      <tr>
-        <td><%= dominate.skill.id %></td>
-        <td><%= dominate.skill.name %></td>
-        <td><%= dominate.skill.description %></td>
-        <td><%= dominate.skill.degree_of_difficulty %></td>
-        <td><%= dominate.degree_of_dominance %></td>
-        <td><%#= link_to 'Más detalles', skill_url %></td>
-        <td><%#= link_to 'Editar', dominate_path(dominate), method: :put %></td>
-        <td><%= link_to 'Eliminar', dominate, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-      </tr>
+    <% if dominates = Dominate.find_by_employee_id(@employee.id) %>
+      <% skills = [] %>
+      <% dominates = dominates.is_a?(Array) ? dominates : [dominates] %>
+      <% dominates.each do |dominate| %>
+      <% skill = Skill.find(dominate.skill_id) %>
+        <tr>
+          <td><%= skill.id %></td>
+          <td><%= skill.name %></td>
+          <td><%= skill.description %></td>
+          <td><%= skill.degree_of_difficulty %></td>
+          <td><%= dominate.degree_of_dominance %></td>
+          <td><%#= link_to 'Más detalles', skill_url %></td>
+          <td><%= link_to 'Editar', edit_dominate_path(dominate) %></td>
+          <td><%= link_to 'Eliminar', dominates_path + "/#{dominate.id}", method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        </tr>
+      <% skills.push(skill) %>
+      <% end %>
     <% end %>
   </tbody>
 </table>

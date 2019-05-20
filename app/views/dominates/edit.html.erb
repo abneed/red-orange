@@ -1,5 +1,31 @@
 <h1>Editar dominancia</h1>
+<%= form_tag("/dominates/#{@dominate.id}", method: :put, model: :dominate) do -%>
+  <% if @dominate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dominate.errors.count, "error") %> prohibió esta dominancia de ser actualizada:</h2>
 
-<%= render 'form', dominate: @dominate %>
+      <ul>
+      <% @dominate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= hidden_field_tag :id, @dominate.id %>
+  <%= hidden_field_tag :employee_id, @dominate.employee_id %>
+  <%= hidden_field_tag :skill_id, @dominate.skill_id %>
+  
+  <div class="field">
+    <strong>
+    <%= label_tag "Grado de dominancia" %><br />
+    </strong>
+    <%= number_field_tag :degree_of_dominance, value = @dominate.degree_of_dominance %>
+  </div>
+  
+  <div class="actions">
+    <%= submit_tag "Actualizar dominancia" %>
+  </div>
+<% end -%>
 
 <%= link_to 'Regresar', employees_path %>
