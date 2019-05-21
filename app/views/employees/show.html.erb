@@ -34,7 +34,7 @@
   <%= @employee.date_of_hire %>
 </p>
 <h2>Habilidades</h2>
-<% if Skill.all %>
+<% if Skill::StoredProcedures.all %>
   <%= link_to 'Agregar nueva habilidad', new_dominate_path + "?employee_id=#{@employee.id}" %>
 <% else %>
   <span>Habilidades no disponibles para asignar</span>
@@ -56,11 +56,11 @@
   </thead>
 
   <tbody>
-    <% if dominates = Dominate.find_by_employee_id(@employee.id) %>
+    <% if dominates = Dominate::StoredProcedures.find_by_employee_id(@employee.id) %>
       <% skills = [] %>
       <% dominates = dominates.is_a?(Array) ? dominates : [dominates] %>
       <% dominates.each do |dominate| %>
-      <% skill = Skill.find(dominate.skill_id) %>
+      <% skill = Skill::StoredProcedures.find(dominate.skill_id) %>
         <tr>
           <td><%= skill.id %></td>
           <td><%= skill.name %></td>
@@ -76,7 +76,7 @@
     <% end %>
   </tbody>
 </table>
-<%#= pie_chart @employee.skills.group(:name).sum(:degree_of_dominance), donut: true %>
+<%#= pie_chart Employee.find(@employee.id).skills.group(:name).sum(:degree_of_dominance), donut: true %>
 
 <%= link_to 'Editar', edit_employee_path(@employee) %> |
 <%= link_to 'Regresar', employees_path %>

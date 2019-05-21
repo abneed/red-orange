@@ -10,8 +10,8 @@ class DominatesController < ApplicationController
 
   def create
     respond_to do |format|
-      Dominate.create(create_dominate_params.values)
-      if dominate = Dominate.find_last_created()
+      Dominate::StoredProcedures.create(create_dominate_params.values)
+      if dominate = Dominate::StoredProcedures.find_last_created()
         format.html { redirect_to employees_path + "/#{dominate.employee_id}", notice: 'La habilidad del empleado fue exitosamente registrado.' }
         format.json { render :show, status: :created, location: employees_path + "/#{dominate.employee_id}" }
       else
@@ -23,8 +23,8 @@ class DominatesController < ApplicationController
 
   def update
     respond_to do |format|
-      Dominate.update(update_dominate_params.values)
-      if dominate = Dominate.find_last_updated()
+      Dominate::StoredProcedures.update(update_dominate_params.values)
+      if dominate = Dominate::StoredProcedures.find_last_updated()
         format.html { redirect_to employees_path + "/#{dominate.employee_id}", notice: 'La habilidad del empleado fue exitosamente actualizado.' }
         format.json { head :no_content }
       else
@@ -35,7 +35,7 @@ class DominatesController < ApplicationController
   end
 
   def destroy
-    Dominate.destroy(@dominate.id)
+    Dominate::StoredProcedures.destroy(@dominate.id)
     respond_to do |format|
       format.html { redirect_to employees_path + "/#{@dominate.employee_id}", notice: 'La habilidad del empleado fue exitosamente removido.' }
       format.json { head :no_content }
@@ -45,7 +45,7 @@ class DominatesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dominate
-      @dominate = Dominate.find(params[:id])
+      @dominate = Dominate::StoredProcedures.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

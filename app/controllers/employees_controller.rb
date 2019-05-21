@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee::StoredProcedures.all
   end
 
   # GET /employees/1
@@ -25,8 +25,8 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     respond_to do |format|
-      Employee.create(employee_params.values)
-      if employee = Employee.find_last_created()
+      Employee::StoredProcedures.create(employee_params.values)
+      if employee = Employee::StoredProcedures.find_last_created()
         format.html { redirect_to employees_path + "/#{employee.id}", notice: 'El empleado fue creado con éxito.' }
         format.json { render :show, status: :created, location: employee }
       else
@@ -40,8 +40,8 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1.json
   def update
     respond_to do |format|
-      Employee.update(update_employee_params.values)
-      if employee = Employee.find_last_updated()
+      Employee::StoredProcedures.update(update_employee_params.values)
+      if employee = Employee::StoredProcedures.find_last_updated()
         format.html { redirect_to employees_path + "/#{employee.id}", notice: 'El empleado fue actualizado con éxito.' }
         format.json { render :show, status: :ok, location: employee }
       else
@@ -54,7 +54,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    Employee.destroy(@employee.id)
+    Employee::StoredProcedures.destroy(@employee.id)
     respond_to do |format|
       format.html { redirect_to employees_url, notice: 'El empleado fue eliminado con éxito.' }
       format.json { head :no_content }
@@ -64,7 +64,7 @@ class EmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
-      @employee = Employee.find(params[:id])
+      @employee = Employee::StoredProcedures.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -17,7 +17,7 @@
     <strong>
     <%= form.label "Habilidad" %><br />
     </strong>
-    <% skills = Skill.all %>
+    <% skills = Skill::StoredProcedures.all %>
     <% skills = skills.is_a?(Array) ? skills : [skills] %>
     <%= select_tag "skill_id", options_from_collection_for_select(skills, "id", "name") %>
   </div>

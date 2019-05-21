@@ -4,7 +4,7 @@ class SkillsController < ApplicationController
   # GET /skills
   # GET /skills.json
   def index
-    @skills = Skill.all
+    @skills = Skill::StoredProcedures.all
   end
 
   # GET /skills/1
@@ -25,8 +25,8 @@ class SkillsController < ApplicationController
   # POST /skills.json
   def create
     respond_to do |format|
-      Skill.create(skill_params.values)
-      if skill = Skill.find_last_created()
+      Skill::StoredProcedures.create(skill_params.values)
+      if skill = Skill::StoredProcedures.find_last_created()
         format.html { redirect_to skill, notice: 'La habilidad fue creada exitosamente.' }
         format.json { render :show, status: :created, location: skill }
       else
@@ -40,8 +40,8 @@ class SkillsController < ApplicationController
   # PATCH/PUT /skills/1.json
   def update
     respond_to do |format|
-      Skill.update(update_skill_params.values)
-      if skill = Skill.find_last_updated()
+      Skill::StoredProcedures.update(update_skill_params.values)
+      if skill = Skill::StoredProcedures.find_last_updated()
         format.html { redirect_to skill, notice: 'La habilidad fue actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: skill }
       else
@@ -54,7 +54,7 @@ class SkillsController < ApplicationController
   # DELETE /skills/1
   # DELETE /skills/1.json
   def destroy
-    Skill.destroy(@skill.id)
+    Skill::StoredProcedures.destroy(@skill.id)
     respond_to do |format|
       format.html { redirect_to skills_url, notice: 'La habilidad fue destruida exitosamente.' }
       format.json { head :no_content }
@@ -64,7 +64,7 @@ class SkillsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_skill
-      @skill = Skill.find(params[:id])
+      @skill = Skill::StoredProcedures.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

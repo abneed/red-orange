@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item::StoredProcedures.all
   end
 
   # GET /items/1
@@ -25,8 +25,8 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     respond_to do |format|
-      Item.create(item_params.values)
-      if item = Item.find_last_created()
+      Item::StoredProcedures.create(item_params.values)
+      if item = Item::StoredProcedures.find_last_created()
         format.html { redirect_to items_path + "/#{item.id}", notice: 'El artículo fue creado con éxito.' }
         format.json { render :show, status: :created, location: items_path + "/#{item.id}" }
       else
@@ -40,8 +40,8 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      Item.update(update_item_params.values)
-      if item = Item.find_last_updated()
+      Item::StoredProcedures.update(update_item_params.values)
+      if item = Item::StoredProcedures.find_last_updated()
         format.html { redirect_to items_path + "/#{item.id}", notice: 'El artículo fue actualizado con éxito.' }
         format.json { render :show, status: :ok, location: items_path + "/#{item.id}" }
       else
@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    Item.destroy(@item.id)
+    Item::StoredProcedures.destroy(@item.id)
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'El artículo fue eliminado con éxito.' }
       format.json { head :no_content }
@@ -64,7 +64,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item::StoredProcedures.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
