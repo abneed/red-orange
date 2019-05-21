@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_11_120904) do
+ActiveRecord::Schema.define(version: 2019_05_20_135707) do
 
   create_table "dominates", force: :cascade do |t|
     t.integer "employee_id"
