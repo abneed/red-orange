@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   resources :users
   resources :skills
   resources :employees
-  resources :dominates, only: [:edit, :update, :destroy]
+  resources :dominates
   resources :items
+  namespace :api, :defaults => {:format => :json} do
+    namespace :v1 do
+      resources :skills
+      resources :employees
+      resources :dominates
+      resources :items
+    end
+  end
 end
