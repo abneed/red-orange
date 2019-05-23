@@ -1,7 +1,7 @@
 <%= form_with(model: dominate, local: true) do |form| %>
   <% if dominate.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(dominate.errors.count, "error") %> prohibited this dominate from being saved:</h2>
+      <h2><%= pluralize(dominate.errors.count, "error") %> prohibió esta dominancia de ser guardado:</h2>
 
       <ul>
       <% dominate.errors.full_messages.each do |message| %>
@@ -10,6 +10,17 @@
       </ul>
     </div>
   <% end %>
+  
+  <%= hidden_field_tag :employee_id, params[:employee_id] %>
+  
+  <div class="field">
+    <strong>
+    <%= form.label "Habilidad" %><br />
+    </strong>
+    <% skills = Skill::StoredProcedures.all %>
+    <% skills = skills.is_a?(Array) ? skills : [skills] %>
+    <%= select_tag "skill_id", options_from_collection_for_select(skills, "id", "name") %>
+  </div>
 
   <div class="field">
     <strong>

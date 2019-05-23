@@ -1,6 +1,43 @@
 <h1>Editar artículo</h1>
 
-<%= render 'form', item: @item %>
+<%= form_tag("/items/#{@item.id}", method: :put, model: :item) do -%>
+    <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibido este artículo de ser guardado:</h2>
 
-<%= link_to 'Detalles', @item %> |
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <strong>
+    <%= label_tag "Nombre" %><br />
+    </strong>
+    <%= text_field_tag :name, value = @item.name %>
+  </div>
+
+  <div class="field">
+    <strong>
+    <%= label_tag "Descripción" %><br />
+    </strong>
+    <%= text_field_tag :description, value = @item.description %>
+  </div>
+
+  <div class="field">
+    <strong>
+    <%= label_tag "Cantidad" %><br />
+    </strong>
+    <%= number_field_tag :quantity,  value = @item.quantity %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Actualizar artículo" %>
+  </div>
+<% end -%>
+
+<%= link_to 'Cancelar', items_path + "/#{@item.id}" %> |
 <%= link_to 'Regresar', items_path %>

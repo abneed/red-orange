@@ -2,9 +2,9 @@
 
 abneed:
   name: "Abneed Rodriguez"
-  jobTitle: "Software Developer"
+  job_title: "Software Developer"
   subsidiary: "Red Orange - Nuevo Laredo"
   department: "Engineering"
   currency: "MXN"
   phone: 867-225-20-31
-  dateOfHire: 2019-05-04
+  date_of_hire: 2019-05-04

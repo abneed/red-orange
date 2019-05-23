@@ -10,44 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_135707) do
+ActiveRecord::Schema.define(version: 2019_05_18_172618) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "dominates", force: :cascade do |t|
-    t.integer "employee_id"
-    t.integer "skill_id"
+    t.bigint "employee_id"
+    t.bigint "skill_id"
     t.integer "degree_of_dominance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
     t.index ["employee_id"], name: "index_dominates_on_employee_id"
     t.index ["skill_id"], name: "index_dominates_on_skill_id"
   end
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
-    t.string "jobTitle"
+    t.string "job_title"
     t.string "subsidiary"
     t.string "department"
     t.string "currency"
     t.string "phone"
-    t.date "dateOfHire"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.date "date_of_hire", default: -> { "now()" }
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
   end
 
   create_table "items", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "description", default: "", null: false
     t.integer "quantity", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
   end
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "degree_of_difficulty"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,10 +60,12 @@ ActiveRecord::Schema.define(version: 2019_05_20_135707) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "dominates", "employees"
+  add_foreign_key "dominates", "skills"
 end

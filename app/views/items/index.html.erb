@@ -17,20 +17,23 @@
   </thead>
 
   <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.id %></td>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= item.quantity %></td>
-        <td><%= link_to 'Detalles', item %></td>
-        <td><%= link_to 'Editar', edit_item_path(item) %></td>
-        <td><%= link_to 'Eliminar', item, method: :delete, data: { confirm: '¿Desea realmente eliminar el artículo?' } %></td>
-      </tr>
+    <% if @items %>
+      <% @items = @items.is_a?(Array) ? @items : [@items] %>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= item.name %></td>
+          <td><%= item.description %></td>
+          <td><%= item.quantity %></td>
+          <td><%= link_to 'Detalles', items_path + "/#{item.id}" %></td>
+          <td><%= link_to 'Editar', edit_item_path(item) %></td>
+          <td><%= link_to 'Eliminar', items_path + "/#{item.id}", method: :delete, data: { confirm: '¿Desea realmente eliminar el artículo?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= bar_chart Item.all.group(:name).sum(:quantity) %>
+<%#= bar_chart Item.all.group(:name).sum(:quantity) %>

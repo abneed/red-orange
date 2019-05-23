@@ -1,7 +1,7 @@
 <%= form_with(model: employee, local: true) do |form| %>
   <% if employee.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibió a este empleado de ser guardado:</h2>
 
       <ul>
       <% employee.errors.full_messages.each do |message| %>
@@ -22,7 +22,7 @@
     <strong>
     <%= form.label "Título profesional" %><br />
     </strong>
-    <%= form.text_field :jobTitle %>
+    <%= form.text_field :job_title %>
   </div>
 
   <div class="field">
@@ -48,11 +48,11 @@
 
   <div class="field">
     <strong>
-    <%= form.label "Telefono" %><br />
+    <%= form.label "Teléfono" %><br />
     </strong>
     <%= form.text_field :phone %>
   </div>
-  
+  <!--
   <h2>Habilidades</h2>
   <table class="table table-hover">
     <thead>
@@ -82,6 +82,7 @@
       <% end %>
     </tbody>
   </table>
+  -->
   <div class="actions">
     <%= form.submit "Guardar" %>
   </div>

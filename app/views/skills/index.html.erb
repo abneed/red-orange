@@ -17,16 +17,19 @@
   </thead>
 
   <tbody>
-    <% @skills.each do |skill| %>
-      <tr>
-        <td><%= skill.id %></td>
-        <td><%= skill.name %></td>
-        <td><%= skill.description %></td>
-        <td><%= skill.degree_of_difficulty %></td>
-        <td><%= link_to 'Más detalles', skill %></td>
-        <td><%= link_to 'Editar', edit_skill_path(skill) %></td>
-        <td><%= link_to 'Eliminar', skill, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-      </tr>
+    <% if @skills %>
+      <% @skills = @skills.is_a?(Array) ? @skills : [@skills] %>
+      <% @skills.each do |skill| %>
+        <tr>
+          <td><%= skill.id %></td>
+          <td><%= skill.name %></td>
+          <td><%= skill.description %></td>
+          <td><%= skill.degree_of_difficulty %></td>
+          <td><%= link_to 'Más detalles', skills_path + "/#{skill.id}" %></td>
+          <td><%= link_to 'Editar', edit_skill_path(skill) %></td>
+          <td><%= link_to 'Eliminar', skills_path + "/#{skill.id}", method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

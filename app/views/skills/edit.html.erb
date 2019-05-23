@@ -1,6 +1,43 @@
 <h1>Modificar habilidad</h1>
 
-<%= render 'form', skill: @skill %>
+<%= form_tag("/skills/#{@skill.id}", method: :put, model: :skill) do -%>
+  <% if @skill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@skill.errors.count, "error") %> prohibido esta habilidad de ser guardada:</h2>
 
-<%= link_to 'Mostrar', @skill %> |
+      <ul>
+      <% @skill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong>
+    <%= label_tag "Nombre" %><br />
+    </strong>
+    <%= text_field_tag :name, value = @skill.name %>
+  </div>
+
+  <div class="field">
+    <strong>
+    <%= label_tag "Descripción" %><br />
+    </strong>
+    <%= text_field_tag :description, value = @skill.description %>
+  </div>
+
+  <div class="field">
+    <strong>
+    <%= label_tag "Grado de dificultad" %><br />
+    </strong>
+    <%= number_field_tag :degree_of_difficulty,  value = @skill.degree_of_difficulty %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Guardar habilidad" %>
+  </div>
+<% end -%>
+
+
+<%= link_to 'Cancelar',  skills_path + "/#{@skill.id}" %> |
 <%= link_to 'Regresar', skills_path %>
