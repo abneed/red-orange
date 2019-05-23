@@ -48,6 +48,6 @@ class API::V1::EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:name, :jobTitle, :subsidiary, :department, :currency, :phone, :dateOfHire)
+      params.require(:employee).permit(:name, :job_title, :subsidiary, :department, :currency, :phone, :date_of_hire)
     end
 end
