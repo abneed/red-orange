@@ -1,0 +1,41 @@
+<script>
+
+function fromToXml(form, model) {
+  var xmlfile = ['<?xml version="1.0"?>']
+  xmlfile.push("<entity>");
+  var attributes = form.elements;
+  for (var i = 0; i < attributes.length; i++) {
+    var attribute = document.createElement("ATTRIBUTE");
+    if (attributes[i].name) {
+      attribute.setAttribute("name", attributes[i].name);
+      attribute.setAttribute("value", attributes[i].value);
+      xmlfile.push(attribute.outerHTML);
+    }
+  }
+  xmlfile.push("</entity>");
+  return xmlfile.join("\n");
+}
+
+function xmlToForm(xml, form) {
+  var attributes = document.form.elements
+  for (var i = 0; i < attributes.length; i++) {
+    if (attributes[i].name == "name") {
+      attributes[i].value = "pass value here [i]"
+    }
+  }
+}
+
+function downloadData(contentType, data, filename) {
+  var anchor = document.createElement("A");
+
+  anchor.setAttribute("href", encodeURI("data:" + contentType + "," + data));
+  anchor.setAttribute("download", filename);
+
+  document.body.appendChild(anchor);
+  anchor.click();
+}
+
+function download(form, model) {
+  downloadData("text/xml", fromToXml(form, model), "record.xml");
+}
+</script>

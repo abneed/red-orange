@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <strong>
     <%= form.label "Nombre completo" %><br />
@@ -84,6 +83,33 @@
   </table>
   -->
   <div class="actions">
-    <%= form.submit "Guardar" %>
+    <%= file_field_tag 'attachment', onchange: "readFile(this)" %><br />
+    <%= form.submit "Guardar" %><br />
+    <%= form.submit "Guardar empleado y generar XML", onclick: "download(this.form,'employee')" %>
   </div>
 <% end %>
+<script>
+  function readFile(e) {
+    var file = $(e)[0].files[0];
+    if (!file) {
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var content = e.target.result;
+      showContent(content);
+    };
+    reader.readAsText(file);
+  }
+
+  function showContent(content) {
+    var parser = new DOMParser();
+    var xmlDoc = parser.parseFromString(content, "text/xml");
+    $("#employee_name").val(xmlDoc.getElementsByName("name")[0].getAttribute("value"));
+    $("#employee_job_title").val(xmlDoc.getElementsByName("job_title")[0].getAttribute("value"));
+    $("#employee_subsidiary").val(xmlDoc.getElementsByName("subsidiary")[0].getAttribute("value"));
+    $("#employee_department").val(xmlDoc.getElementsByName("department")[0].getAttribute("value"));
+    $("#employee_currency").val(xmlDoc.getElementsByName("currency")[0].getAttribute("value"));
+    $("#employee_phone").val(xmlDoc.getElementsByName("phone")[0].getAttribute("value"));
+  }
+</script>
