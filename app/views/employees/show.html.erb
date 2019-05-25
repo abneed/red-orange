@@ -76,7 +76,7 @@
     <% end %>
   </tbody>
 </table>
-<%#= pie_chart Employee.find(@employee.id).skills.group(:name).sum(:degree_of_dominance), donut: true %>
+<%= pie_chart Employee.find(@employee.id).skills.group(:name).sum(:degree_of_dominance), donut: true %>
 
 <%= link_to 'Editar', edit_employee_path(@employee) %> |
 <%= link_to 'Regresar', employees_path %>
