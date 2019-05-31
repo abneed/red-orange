@@ -1,0 +1,14 @@
+<script>
+  function changeMode() {
+    e = document.getElementById("body")
+    b = document.getElementById("mode-button")
+    if (e.className == "light-mode") {
+      e.className = "dark-mode"
+      b.innerHTML = "Cambiar a 'Light Mode'"
+    }
+    else {
+      e.className = "light-mode"
+      b.innerHTML = "Cambiar a 'Dark Mode'"
+    }
+  }
+</script>

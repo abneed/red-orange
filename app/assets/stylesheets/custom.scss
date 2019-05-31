@@ -273,3 +273,21 @@ input#user_password, input#user_email {
 .image_presentation {
   width: 100%;
 }
+
+.light-mode {
+  background-color: #fff;
+  p {
+    color:black;
+  }
+}
+
+.dark-mode {
+  background-color: dimgray;
+  
+  p, span, td, th, small {
+    color:snow;
+  }
+  a {
+    color: wheat;
+  }
+}

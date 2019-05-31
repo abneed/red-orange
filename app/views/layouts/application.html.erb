@@ -6,9 +6,10 @@
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
     <%= render 'layouts/xml_generator' %>
+    <%= render 'layouts/dark_mode' %>
   </head>
 
-  <body>
+  <body id="body" class="light-mode">
   <%= render 'layouts/header' %>
     <div class='container padding-top'>
       <%= yield %>
