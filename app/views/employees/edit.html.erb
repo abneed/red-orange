@@ -53,43 +53,7 @@
     </strong>
     <%= text_field_tag :phone, value = @employee.phone %>
   </div>
-  <!--
-  <h2>Habilidades</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">ID Interno</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Grado de dificultad</th>
-        <th scope="col">Grado de dominancia</th>
-        
-        <th colspan="3"></th>
-        
-      </tr>
-    </thead>
 
-    <tbody>
-      <% if dominates = Dominate.find_by_employee_id(@employee.id) %>
-        <% skills = [] %>
-        <% dominates = dominates.is_a?(Array) ? dominates : [dominates] %>
-        <% dominates.each do |dominate| %>
-        <% skill = Skill.find(dominate.skill_id) %>
-          <tr>
-          <td><%= skill.id %></td>
-          <td><%= skill.name %></td>
-          <td><%= skill.description %></td>
-          <td><%= skill.degree_of_difficulty %></td>
-          <td><%= dominate.degree_of_dominance %></td>
-            <td><%= link_to 'Editar', edit_dominate_path(dominate) %></td>
-            <td><%= link_to 'Eliminar', dominate, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-          </tr>
-        <% skills.push(skill) %>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-  -->
   <div class="actions">
     <%= file_field_tag 'attachment', onchange: "readFile(this)" %><br />
     <%= submit_tag "Actualizar" %><br />
@@ -116,11 +80,22 @@
   function showContent(content) {
     var parser = new DOMParser();
     var xmlDoc = parser.parseFromString(content, "text/xml");
-    $("#name").val(xmlDoc.getElementsByName("name")[0].getAttribute("value"));
-    $("#job_title").val(xmlDoc.getElementsByName("job_title")[0].getAttribute("value"));
-    $("#subsidiary").val(xmlDoc.getElementsByName("subsidiary")[0].getAttribute("value"));
-    $("#department").val(xmlDoc.getElementsByName("department")[0].getAttribute("value"));
-    $("#currency").val(xmlDoc.getElementsByName("currency")[0].getAttribute("value"));
-    $("#phone").val(xmlDoc.getElementsByName("phone")[0].getAttribute("value"));
+    if(xmlDoc.getElementsByName("name")[0])
+    {
+      $("#name").val(xmlDoc.getElementsByName("name")[0].getAttribute("value")); 
+      $("#job_title").val(xmlDoc.getElementsByName("job_title")[0].getAttribute("value"));
+      $("#subsidiary").val(xmlDoc.getElementsByName("subsidiary")[0].getAttribute("value"));
+      $("#department").val(xmlDoc.getElementsByName("department")[0].getAttribute("value"));
+      $("#currency").val(xmlDoc.getElementsByName("currency")[0].getAttribute("value"));
+      $("#phone").val(xmlDoc.getElementsByName("phone")[0].getAttribute("value"));
+    }
+    else {
+      $("#name").val(xmlDoc.getElementsByName("employee[name]")[0].getAttribute("value")); 
+      $("#job_title").val(xmlDoc.getElementsByName("employee[job_title]")[0].getAttribute("value"));
+      $("#subsidiary").val(xmlDoc.getElementsByName("employee[subsidiary]")[0].getAttribute("value"));
+      $("#department").val(xmlDoc.getElementsByName("employee[department]")[0].getAttribute("value"));
+      $("#currency").val(xmlDoc.getElementsByName("employee[currency]")[0].getAttribute("value"));
+      $("#phone").val(xmlDoc.getElementsByName("employee[phone]")[0].getAttribute("value"));
+    }
   }
 </script>

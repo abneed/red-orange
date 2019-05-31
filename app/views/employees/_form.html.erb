@@ -51,37 +51,7 @@
     </strong>
     <%= form.text_field :phone %>
   </div>
-  <!--
-  <h2>Habilidades</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">ID Interno</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Grado de dificultad</th>
-        <th scope="col">Grado de dominancia</th>
-        
-        <th colspan="3"></th>
-        
-      </tr>
-    </thead>
 
-    <tbody>
-      <% employee.dominates.each do |dominate| %>
-        <tr>
-          <td><%= dominate.skill.id %></td>
-          <td><%= dominate.skill.name %></td>
-          <td><%= dominate.skill.description %></td>
-          <td><%= dominate.skill.degree_of_difficulty %></td>
-          <td><%= dominate.degree_of_dominance %></td>
-          <td><%= link_to 'Editar', edit_dominate_path(dominate) %></td>
-          <td><%= link_to 'Eliminar', dominate, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  -->
   <div class="actions">
     <%= file_field_tag 'attachment', onchange: "readFile(this)" %><br />
     <%= form.submit "Guardar" %><br />
@@ -105,11 +75,22 @@
   function showContent(content) {
     var parser = new DOMParser();
     var xmlDoc = parser.parseFromString(content, "text/xml");
-    $("#employee_name").val(xmlDoc.getElementsByName("name")[0].getAttribute("value"));
-    $("#employee_job_title").val(xmlDoc.getElementsByName("job_title")[0].getAttribute("value"));
-    $("#employee_subsidiary").val(xmlDoc.getElementsByName("subsidiary")[0].getAttribute("value"));
-    $("#employee_department").val(xmlDoc.getElementsByName("department")[0].getAttribute("value"));
-    $("#employee_currency").val(xmlDoc.getElementsByName("currency")[0].getAttribute("value"));
-    $("#employee_phone").val(xmlDoc.getElementsByName("phone")[0].getAttribute("value"));
+    if(xmlDoc.getElementsByName("name")[0])
+    {
+      $("#employee_name").val(xmlDoc.getElementsByName("name")[0].getAttribute("value")); 
+      $("#employee_job_title").val(xmlDoc.getElementsByName("job_title")[0].getAttribute("value"));
+      $("#employee_subsidiary").val(xmlDoc.getElementsByName("subsidiary")[0].getAttribute("value"));
+      $("#employee_department").val(xmlDoc.getElementsByName("department")[0].getAttribute("value"));
+      $("#employee_currency").val(xmlDoc.getElementsByName("currency")[0].getAttribute("value"));
+      $("#employee_phone").val(xmlDoc.getElementsByName("phone")[0].getAttribute("value"));
+    }
+    else {
+      $("#employee_name").val(xmlDoc.getElementsByName("employee[name]")[0].getAttribute("value")); 
+      $("#employee_job_title").val(xmlDoc.getElementsByName("employee[job_title]")[0].getAttribute("value"));
+      $("#employee_subsidiary").val(xmlDoc.getElementsByName("employee[subsidiary]")[0].getAttribute("value"));
+      $("#employee_department").val(xmlDoc.getElementsByName("employee[department]")[0].getAttribute("value"));
+      $("#employee_currency").val(xmlDoc.getElementsByName("employee[currency]")[0].getAttribute("value"));
+      $("#employee_phone").val(xmlDoc.getElementsByName("employee[phone]")[0].getAttribute("value"));
+    }
   }
 </script>

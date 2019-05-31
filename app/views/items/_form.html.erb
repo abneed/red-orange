@@ -55,8 +55,15 @@
   function showContent(content) {
     var parser = new DOMParser();
     var xmlDoc = parser.parseFromString(content, "text/xml");
-    $("#item_name").val(xmlDoc.getElementsByName("name")[0].getAttribute("value"));
-    $("#item_description").val(xmlDoc.getElementsByName("description")[0].getAttribute("value"));
-    $("#item_quantity").val(xmlDoc.getElementsByName("quantity")[0].getAttribute("value"));
+    if (xmlDoc.getElementsByName("name")[0]) {
+      $("#item_name").val(xmlDoc.getElementsByName("name")[0].getAttribute("value"));
+      $("#item_description").val(xmlDoc.getElementsByName("description")[0].getAttribute("value"));
+      $("#item_quantity").val(xmlDoc.getElementsByName("quantity")[0].getAttribute("value"));  
+    }
+    else {
+      $("#item_name").val(xmlDoc.getElementsByName("item[name]")[0].getAttribute("value"));
+      $("#item_description").val(xmlDoc.getElementsByName("item[description]")[0].getAttribute("value"));
+      $("#item_quantity").val(xmlDoc.getElementsByName("item[quantity]")[0].getAttribute("value"));  
+    }
   }
 </script>
